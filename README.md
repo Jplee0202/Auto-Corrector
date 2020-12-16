@@ -2,6 +2,7 @@
 Project for CS172, Shanghaitech, 2020
 <br>
 The project is about mathematical problem identification and calculation.
+<br>
 The work can be splited into two main sub-problem: Segmentation and Indetification
 <br>
 12.16
