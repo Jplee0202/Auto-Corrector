@@ -8,6 +8,7 @@ def imgCutter(originImg, div):
     :return: The cutted images in the root dictionary
 
     '''
+
     global num
     width = len(originImg[0])
     height = len(originImg)
