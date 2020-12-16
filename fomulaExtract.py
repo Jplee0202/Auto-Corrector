@@ -2,6 +2,11 @@ import cv2
 import identify
 
 def extract(img):
+    """
+    This function is used to extract a fomula from the image
+    :param img: single cutted image
+    :return: a tuple of (fomula extracted, whether there is an answer)
+    """
     fomula = ''
     equal = '='
     width = len(img[0])
@@ -37,21 +42,6 @@ def extract(img):
                 ifAnswer = True
 
     return((fomula, ifAnswer))
-
-
-
-
-
-
-    identify()
-
-
-    return fomula
-
-
-
-
-
 
 img = cv2.imread('im0.png')
 extract(img)

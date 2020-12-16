@@ -2,13 +2,11 @@ import cv2 as cv
 num = 0
 def imgCutter(originImg, div):
     '''
-
+    This function is used to cut a single image with a fomula from an origin image
     :param originImg: Input the original image with gray-scale
     :param div: Gradation of gray level
     :return: The cutted images in the root dictionary
-
     '''
-
     global num
     width = len(originImg[0])
     height = len(originImg)
