@@ -8,6 +8,7 @@ The work can be splited into two main sub-problems: Segmentation and Indetificat
 2020.12.16
 <br>
 A digit recognizer based on BOW+SVM is implemented whose dataset is MINST from Yann lecun.
+<br>
 2020.12.18
 <br>
 Opps! The recognizer is not perfect maybe due to the size of data images.
