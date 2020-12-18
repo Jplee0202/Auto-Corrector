@@ -3,7 +3,7 @@ import cv2, os, glob, gc
 from BOW import calc_sift
 
 
-k=100
+k=600
 def calc_feature(features, centers):
     vec_feature = np.zeros((1, k))
     for i in range(0, features.shape[0]):
@@ -45,12 +45,12 @@ print(set_test)
 
 
 for folder, number in set_test.items():
-
     crt = 0
-    labels, centers = np.load(dire + folder + ".npy",allow_pickle=True)
+    labels, centers = np.load(dire + "vocabulary" + ".npy",allow_pickle=True)
     print("Classify Test ", folder)
     for i in range(number):
         file_name = path_name + folder +"/" + folder + "_" + str(i + 1) + ".jpg"
+        #print(file_name)
         flag = True
         img = cv2.imread(file_name)
         features = calc_sift(img)
@@ -63,6 +63,7 @@ for folder, number in set_test.items():
         dd = svm.predict(case)
         if np.array(dict_id) in dd[1]:
             crt = crt + 1
+            #print(crt)
     print("right prediction:",crt,", total prediction:",number,", accuracy: ",crt/number)
 
     dict_id = dict_id + 1

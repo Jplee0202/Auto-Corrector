@@ -1,7 +1,7 @@
 import cv2, os, glob
 import numpy as np
 
-traing_num=400
+training_num=400
 def calc_sift(img):
     """
     exract the feature of input image
@@ -43,12 +43,11 @@ if __name__ == "__main__":
 # """
 # Calculate and Save the SIFT feature sets
 # """
-
+    sets = np.float32([]).reshape(0, 128)
     for folder, number in set_train.items():
         dir = path_name + "/" + folder + "/"
-        sets = np.float32([]).reshape(0, 128)
         print("Now processing ", folder)
-        for i in range(traing_num):
+        for i in range(number):
             file_name = dir + folder + "_" + str(i + 1) + ".jpg"
             # print(file_name)
             img = cv2.imread(file_name)
@@ -57,20 +56,20 @@ if __name__ == "__main__":
                 continue
             print(file_name)
             sets = np.append(sets, des, axis=0)
-        ff = sets.shape[0]
-        print(str(ff), " features in ", str(number), " images")
-        file_name = path_name + "/features/" + folder + ".npy"
-        np.save(file_name, sets)
+
+    file_name = path_name + "/features/" +"features" + ".npy"
+    np.save(file_name, sets)
     print(set_train)
 
-    k =100
-    for folder,number in set_train.items():
-        file_name = path_name + "/features/" + folder + ".npy"
-        features = np.load(file_name)
-        print("Now learning vocabulary ", folder, " ", end="")
-        criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 20, 0.01)
-        flags = cv2.KMEANS_RANDOM_CENTERS
-        compactness, labels, centers = cv2.kmeans(features, k, None, criteria, 20, flags)
-        file_name = path_name + "/vocabulary/" + folder + ".npy"
-        np.save(file_name, (labels, centers))
-        print(" Done")
+    k =600
+
+    file_name = path_name + "/features/" + "features" + ".npy"
+    features = np.load(file_name)
+    criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 20, 0.01)
+    flags = cv2.KMEANS_RANDOM_CENTERS
+    compactness, labels, centers = cv2.kmeans(features, k, None, criteria, 20, flags)
+    file_name = path_name + "/vocabulary/" + "vocabulary" + ".npy"
+    np.save(file_name, (labels, centers))
+    print(" Done")
+
+

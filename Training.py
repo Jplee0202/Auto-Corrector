@@ -2,8 +2,7 @@ import numpy as np
 import cv2, os, glob
 from BOW import calc_sift
 
-k=100
-training_num=400
+k=600
 def calc_feature(features, centers):
     vec_feature = np.zeros((1, k))
     for i in range(0, features.shape[0]):
@@ -41,10 +40,10 @@ response = np.float32([])
 dict_id = 0
 for folder, number in set_train.items():
     dire = path_name + "/" + folder + "/"
-    labels, centers = np.load(path_name + "/vocabulary/" + folder + ".npy",allow_pickle=True)
+    labels, centers = np.load(path_name + "/vocabulary/" + "vocabulary" + ".npy",allow_pickle=True)
     print("Training ", str(dict_id + 1))
-    counter=training_num
-    for i in range(training_num):
+    counter=number
+    for i in range(number):
         file_name = dire + folder + "_" + str(i + 1) + ".jpg"
         print(file_name)
         img = cv2.imread(file_name)
