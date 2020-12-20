@@ -61,7 +61,7 @@ def imgCutter(originImg, div):
             rightD = True
             rightLine = w
     string = str(num)
-    cv.imwrite('im'+string+'.png', originImg[upLine:downLine, leftLine:rightLine])
+    cv.imwrite('im'+string+'.png', originImg[upLine-5:downLine+5, leftLine-5:rightLine+5])
     num += 1
     imgCutter(originImg[downLine:, :], 20)
 
