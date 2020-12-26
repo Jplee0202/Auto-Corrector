@@ -28,8 +28,8 @@ def formulaE(img):
             leftEqual = x
             rightEqual = x + w
 
-    firstNum = recognize(img[:, 0:leftSymbol])
-    secondNum = recognize(img[:, rightSymbol:leftEqual])
+    firstNum = test_cnn.cnn_recognizer(img[:, 0:leftSymbol])
+    secondNum = test_cnn.cnn_recognizer(img[:, rightSymbol:leftEqual])
     result = img[:, rightEqual:]
     resultWidth = len(result[0])
     resultHeight = len(result)
