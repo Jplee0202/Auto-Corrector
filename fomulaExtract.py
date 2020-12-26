@@ -1,5 +1,5 @@
 import cv2
-from identify import recognize
+from cnn import test_cnn
 import numpy as np
 
 
@@ -14,7 +14,7 @@ def fomulaE(img):
     for contour in contours[1:]:
         x, y, w, h = cv2.boundingRect(contour)
         image = img[:, x:x + w]
-        reg = recognize(image)
+        reg = test_cnn.cnn_recognizer(image)
         if reg == '+' or reg == '-' or reg == 'x' or reg == 'd':
             leftSymbol = x
             rightSymbol = x + w
@@ -23,16 +23,15 @@ def fomulaE(img):
     for contour in contours[1:]:
         x, y, w, h = cv2.boundingRect(contour)
         image = img[:, x:x + w]
-        reg = recognize(image)
+        reg = test_cnn.cnn_recognizer(image)
         if reg == '=':
             leftEqual = x
             rightEqual = x + w
 
     firstNum = recognize(img[:, 0:leftSymbol])
-    print(firstNum)
     secondNum = recognize(img[:, rightSymbol:leftEqual])
-    print(secondNum)
     formula['firstNum'] = firstNum
     formula['symbol'] = symbol
     formula['secondNum'] = secondNum
+    print(fomula)
     return (formula)

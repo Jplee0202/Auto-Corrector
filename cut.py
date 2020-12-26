@@ -63,4 +63,5 @@ def imgCutter(originImg, div):
     string = str(num)
     cv.imwrite('cutted_img/img'+string+'.png', originImg[upLine-5:downLine+5, leftLine-5:rightLine+5])
     num += 1
+    print(num)
     imgCutter(originImg[downLine:, :], 20)

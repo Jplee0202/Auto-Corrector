@@ -8,14 +8,12 @@ import numpy as np
 import tensorflow.compat.v1 as tf
 tf.disable_v2_behavior()
 import cv2
-from identify import pre_process
 # 数据文件夹
 train_dir = "data/train"
 # 训练还是测
 train = 0
 # 模型文件路径
 model_path = "model/image_model"
-file_name="/Users/jp/Downloads/test3.png"
 label_name_dict = {0:'9', 1:'0', 2:'7',3: '+',
                            4:'6',5: '1',6: '8', 7:'-',
                            8:'d',9: '=', 10:'4', 11:'x',
