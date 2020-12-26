@@ -30,6 +30,20 @@ def fomulaE(img):
 
     firstNum = recognize(img[:, 0:leftSymbol])
     secondNum = recognize(img[:, rightSymbol:leftEqual])
+    result = img[:, rightEqual:]
+    resultWidth = len(result[0])
+    resultHeight = len(result)
+    count = 0
+    for h in range(resultHeight):
+        for w in range(resultWidth):
+            if result[h, w, 0] < 127:
+                count += 1
+    if count/(resultWidth*resultHeight)<0.05:
+        formula['resultTF'] = True
+    else:
+        formula['resultTF'] = False
+    if formula['resultTF']:
+        formula['result'] = test_cnn.cnn_recognizer(result)
     formula['firstNum'] = firstNum
     formula['symbol'] = symbol
     formula['secondNum'] = secondNum
