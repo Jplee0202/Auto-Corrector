@@ -63,5 +63,59 @@ def imgCutter(originImg, div):
     string = str(num)
     cv.imwrite('cutted_img/img'+string+'.png', originImg[upLine-5:downLine+5, leftLine-5:rightLine+5])
     num += 1
-    print(num)
     imgCutter(originImg[downLine:, :], 20)
+
+def cutWhite(originImg, div):
+    global num
+    width = len(originImg[0])
+    height = len(originImg)
+    upD = False
+    downD = False
+    rightD = False
+    leftD = False
+    upLine = 0
+    downLine = 0
+    leftLine = 0
+    rightLine = 0
+    for h in range(height):
+        if upD:
+            break
+        for w in range(width):
+            if originImg[h, w, 0] < div:
+                if not upD:
+                    upLine = h
+                    upD = True
+    if not upD:
+        return
+    for h in range(upLine, height):
+        if downD:
+            break
+        blank = True
+        for w in range(width):
+            if originImg[h, w, 0] < div:
+                blank = False
+                break
+        if blank:
+            downD = True
+            downLine = h
+
+    for w in range(width):
+        if leftD:
+            break
+        for h in range(upLine, downLine):
+            if originImg[h, w, 0] < div:
+                if not leftD:
+                    leftLine = w
+                    leftD = True
+
+    for w in range(leftLine, width):
+        if rightD:
+            break
+        blank = False
+        for h in range(upLine, downLine):
+            if originImg[h, w, 0] < div:
+                blank = True
+        if not blank:
+            rightD = True
+            rightLine = w
+    return originImg[upLine - 2:downLine + 2, leftLine - 2:rightLine + 2]

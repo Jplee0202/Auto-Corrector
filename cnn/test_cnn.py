@@ -8,12 +8,13 @@ import numpy as np
 import tensorflow.compat.v1 as tf
 tf.disable_v2_behavior()
 import cv2
+from cnn import pre_processor
 # 数据文件夹
 train_dir = "data/train"
 # 训练还是测
 train = 0
 # 模型文件路径
-model_path = "/Users/jp/Desktop/2020-CS172/cnn/model/image_model"
+model_path = "cnn/model/image_model"
 label_name_dict = {0:'9', 1:'0', 2:'7',3: '+',
                            4:'6',5: '1',6: '8', 7:'-',
                            8:'d',9: '=', 10:'4', 11:'x',
@@ -87,17 +88,16 @@ def read_test(test_dir):
 
 
 def cnn_recognizer(img):
+    processed=pre_processor.pre_process(img)
+    processed=cv2.resize(processed,(45,45))
 
     with tf.Session() as sess:
         test_single = []
-        processed = cv2.resize(img, (45, 45))
         data = np.array(processed)
         test_single.append(data)
 
-        print("测试模式")
         # 如果是测试，载入参数
         saver.restore(sess, model_path)
-        print("从{}载入模型".format(model_path))
         # label和名称的对照关系
         label_name_dict = {0: '9', 1: '0', 2: '7', 3: '+',
                            4: '6', 5: '1', 6: '8', 7: '-',
@@ -114,9 +114,7 @@ def cnn_recognizer(img):
         for i in predicted_labels_val:
             # 将label id转换为label名
             predicted_label_name = label_name_dict[i]
-            print("cnn recognizes as :",predicted_label_name)
             return predicted_label_name
-
 
 
 
