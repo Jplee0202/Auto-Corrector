@@ -1,5 +1,5 @@
 from cut import imgCutter
-from fomulaExtract import fomulaE
+from formulaExtract import formulaE
 import cv2 as cv
 import os
 
@@ -8,13 +8,13 @@ files = os.listdir('cutted_img')
 for f in files:
     if 'png' in f:
         img = cv.imread('cutted_img/' + f)
-        fomula = fomulaE(img)
-        if fomula['symbol'] == '+':
-            ret = int(fomula['firstNum']) + int(fomula['secondNum'])
-        elif fomula['symbol'] == '-':
-            ret = int(fomula['firstNum']) - int(fomula['secondNum'])
-        elif fomula['symbol'] == 'x':
-            ret = int(fomula['firstNum']) * int(fomula['secondNum'])
-        elif fomula['symbol'] == 'd':
-            ret = int(fomula['firstNum']) / int(fomula['secondNum'])
-        print('Answer for ' + fomula['firstNum'] + fomula['symbol'] + fomula['secondNum'] + 'is: ' + ret)
+        formula = formulaE(img)
+        if formula['symbol'] == '+':
+            ret = int(formula['firstNum']) + int(formula['secondNum'])
+        elif formula['symbol'] == '-':
+            ret = int(formula['firstNum']) - int(formula['secondNum'])
+        elif formula['symbol'] == 'x':
+            ret = int(formula['firstNum']) * int(formula['secondNum'])
+        elif formula['symbol'] == 'd':
+            ret = int(formula['firstNum']) / int(formula['secondNum'])
+        print('Answer for ' + formula['firstNum'] + formula['symbol'] + formula['secondNum'] + 'is: ' + ret)

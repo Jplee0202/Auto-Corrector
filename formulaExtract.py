@@ -3,10 +3,10 @@ from cnn import test_cnn
 import numpy as np
 
 
-def fomulaE(img):
+def formulaE(img):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     ret, binary = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)
-    fomula = {}
+    formula = {}
     contours, hierarchy = cv2.findContours(binary, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     """cv2.drawContours(img, contours, -1, (0, 0, 255), 1)"""
     leftSymbol = 0
@@ -38,7 +38,7 @@ def fomulaE(img):
         for w in range(resultWidth):
             if result[h, w, 0] < 127:
                 count += 1
-    if count/(resultWidth*resultHeight)<0.05:
+    if count / (resultWidth * resultHeight) < 0.05:
         formula['resultTF'] = True
     else:
         formula['resultTF'] = False
@@ -47,5 +47,5 @@ def fomulaE(img):
     formula['firstNum'] = firstNum
     formula['symbol'] = symbol
     formula['secondNum'] = secondNum
-    print(fomula)
+    print(formula)
     return (formula)
