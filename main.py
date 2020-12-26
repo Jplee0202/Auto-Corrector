@@ -10,6 +10,7 @@ for f in files:
     if 'png' in f:
         img = cv.imread('cutted_img/' + f)
         formula = formulaE(img)
+        tf = 'wrong!'
         if formula['symbol'] == '+':
             ret = int(formula['firstNum']) + int(formula['secondNum'])
         elif formula['symbol'] == '-':
@@ -20,6 +21,18 @@ for f in files:
         elif formula['symbol'] == 'd':
             formula['symbol'] = '/'
             ret = int(formula['firstNum']) / int(formula['secondNum'])
-        print('Answer for' , formula['firstNum'] , formula['symbol'] , formula['secondNum'] , 'is: ' , ret)
+        if formula['resultTF']:
+            if int(ret) == int(formula['result']):
+                tf = "Right!"
+                print('Answer for', formula['firstNum'], formula['symbol'], formula['secondNum'], 'is: ', ret, "  ", tf)
+            else:
+                tf = "Wrong!"
+                print('Answer for', formula['firstNum'], formula['symbol'], formula['secondNum'], 'is: ', ret, "  ", tf,"Your answer is:",formula['result'])
+
+        else:
+            tf = "You do not write an answer"
+            print('Answer for', formula['firstNum'], formula['symbol'], formula['secondNum'], 'is: ', ret,"  ",tf)
+
+
 for f in files:
     os.remove('cutted_img/' + f)
