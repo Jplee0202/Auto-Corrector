@@ -50,20 +50,22 @@ def formulaE(img):
     secondImg = img[:, rightSymbol:leftEqual]
     secondNum = test_cnn.cnn_recognizer(secondImg)
     """cv2.imwrite("secondNum.png", secondImg)"""
-    result = img[:, rightEqual + 20:]
-    cv2.imwrite("result" + str(num) + ".png", result)
-    num += 1
-    resultWidth = len(result[0])
-    resultHeight = len(result)
-    count = 0
-    for h in range(resultHeight):
-        for w in range(resultWidth):
-            if result[h, w, 0] < 127:
-                count += 1
-    if count / (resultWidth * resultHeight) < 0.01:
+    if len(img[0]) - rightEqual <= 20:
         formula['resultTF'] = False
     else:
-        formula['resultTF'] = True
+        result = img[:, rightEqual + 20:]
+        num += 1
+        resultWidth = len(result[0])
+        resultHeight = len(result)
+        count = 0
+        for h in range(resultHeight):
+            for w in range(resultWidth):
+                if result[h, w, 0] < 127:
+                    count += 1
+        if count / (resultWidth * resultHeight) < 0.01 or count / (resultWidth * resultHeight) > 0.15:
+            formula['resultTF'] = False
+        else:
+            formula['resultTF'] = True
     if formula['resultTF']:
         formula['result'] = test_cnn.cnn_recognizer(result)
 
