@@ -38,7 +38,6 @@ def formulaE(img):
         num += 1
         reg = test_cnn.cnn_recognizer(image)
         if reg == '=':
-            cv2.imwrite("equalImg.png", image)
             leftEqual = x
             rightEqual = x + w
 
