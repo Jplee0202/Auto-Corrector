@@ -1,30 +1,18 @@
-# 2020-CS172
-Project for CS172, Shanghaitech, 2020
 
-The project is about mathematical problem identification and calculation.
-The work can be splited into two main sub-problems: Segmentation and Indetification
+# Automatic Correction for Handwritten Mathmetical Formula 
+Detecting lines of mathematical problems then solve it!
+We develop two kinds of model for recognizing math operators and numbers.
+**Low-level model: Adpoting BOW + SVM for image classification
+CNN-based model: LeNet trained on MNIST
+**
+Pipeline is shown below
+![image](https://user-images.githubusercontent.com/72722062/130405791-5451b443-74bf-40bc-a11d-d8bf45e58488.png)
 
-2020.12.16
-A digit recognizer based on BOW+SVM is implemented whose dataset is MINST from Yann lecun.
-
-2020.12.18
-Opps! The recognizer is not perfect maybe due to the size of data images.
-We will try to use CNN based recognizer!
-
-2020.12.27
-We finish the work. 
-Congratulations!
-
-Use of code:
-Tensorflow 2.4, Opencv 4.5 and python 3.8
-put a new image into /2020-CS172, rename it as originalImg 
-run python main.py to see answer
-
-2020-CS172/cnn are folder for CNN train, test and cnn_recognizer.
-For train, you can change train=0 into train=1 in cnn/cnn.py and run python cnn.py
-
-2020-CS172 are cut and preprocess fucntion
+To improve the accuracy, we extact the skeleton for each element detected.
+<img width="258" alt="Screen Shot 2021-08-23 at 3 23 40 PM" src="https://user-images.githubusercontent.com/72722062/130407003-1efa36f8-30e6-4942-970a-570485a2b491.png">
 
 
+*Dataset: CROHME of ICFHR14 and MNIST
+*Environment: Tensorflow 2.4, Opencv 4.5 and python 3.7+
 
 
