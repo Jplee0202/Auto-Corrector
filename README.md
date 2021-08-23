@@ -3,6 +3,7 @@
 Detecting lines of mathematical problems then solve it!
 ## We develop two kinds of model for recognizing math operators and numbers.
 **Low-level model**: Adpoting BOW + SVM for image classification
+
 **CNN-based model**: LeNet trained on MNIST
 
 ## Pipeline is shown below
